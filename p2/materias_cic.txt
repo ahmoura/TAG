@@ -1,0 +1,46 @@
+113034|Calculo 1|6|3|
+113468|Introducao Aos Sistemas Computacionais|4|2|
+113450|Fundamentos Teoricos Da Computacao|4|1|
+113476|Algoritmo E Programacao De Computadores|6|2|
+116726|Informatica E Sociedade|2|1|
+116351|Circuitos Digitais|6|2|
+116319|Estruturas De Dados|4|3|113476
+113042|Calculo 2|6|3|113034
+113093|Introducao A Algebra Linear|4|1|
+116394|Organizacao E Arquitetura De Computadores|4|3|116351
+117889|Tecnicas De Programacao 1|4|1|116319
+113107|Algebra 1|4|1|
+113417|Calculo Numerico|4|2|113042
+115045|Probabilidade E Estatistica|6|2|113034
+117366|Logica Computacional 1|4|1|
+117897|Tecnicas De Programacao 2|4|1|117889
+116327|Organizacao De Arquivos|4|1|116319 115045
+117901|Teoria E Aplicacao De Grafos|4|2|116319
+116572|Redes De Computadores|4|1|116319|113042 115045
+116343|Linguagem De Programacao|4|2|116319
+117935|Programacao Concorrente|4|1|117897 116394
+116441|Engenharia De Software|4|1|117889
+116378|Bancos De Dados|4|1|116327
+116653|Introducao A Inteligencia Artificial|4|2|117366 116319
+116432|Software Basico|4|3|116319 116394
+117960|Fundamentos De Sistemas Operacionais|4|1|117935
+116882|Automatos E Computablidade|6|3|113107
+116416|Sistemas De Informacao|4|1|116319
+117943|Computacao Experimental|4|3|116319 115045
+117536|Projeto De Analise De Algoritmo|4|2|113034 116319
+117927|Seguranca Computacional|4|2|116572
+117951|Compiladores|4|3|116343 116432 116882
+116912|Trabalho De Graduacao 1|2|3|
+116921|Trabalho De Graduacao 2|4|3|116912
+117919|Metodologia Cientifica|2|2|116921
+113051|Calculo 3|6|3|113042
+118001|Fisica 1|4|3|
+118028|Fisica 2|4|2|118001 113034
+118044|Fisica 3|4|3|118028 113042
+118061|Fisica 4|4|3|118044 113042
+116491|Introducao A Computacao Sonica|4|1|113034 116319
+145971|Ingles Instrumental 1|4|1|
+142573|Ingles Instrumental 2|4|1|145971
+113115|Teoria Dos Numeros 1|4|1|
+117587|Interacao Humano Computador|4|1|117889
+113131|Algebra 2|4|1|113107
