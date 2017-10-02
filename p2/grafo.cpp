@@ -115,7 +115,7 @@ int printg (int mode, graph g){
 
   unsigned int i;
 
-
+  cout << "\n\t\t ### Curso ### \n" << "Ciencia da Computacao \n";
   if (mode == 0){
     for (i = 0; i < g.digraph.size(); i++){ //Imprime uma caixa com os valores de cada vertice do grafo
       cout << "==================================================================" << endl;
