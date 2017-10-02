@@ -16,7 +16,7 @@
 117897|Tecnicas De Programacao 2|4|1|117889
 116327|Organizacao De Arquivos|4|1|116319 115045
 117901|Teoria E Aplicacao De Grafos|4|2|116319
-116572|Redes De Computadores|4|1|116319|113042 115045
+116572|Redes De Computadores|4|1|116319 113042 115045
 116343|Linguagem De Programacao|4|2|116319
 117935|Programacao Concorrente|4|1|117897 116394
 116441|Engenharia De Software|4|1|117889

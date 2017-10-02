@@ -113,20 +113,26 @@ int loadfile (graph &g){
 
 int printg (int mode, graph g){
 
-  unsigned int i;
+  unsigned int i, j;
 
-  cout << "\n\t\t ### Curso ### \n" << "Ciencia da Computacao \n";
-  if (mode == 0){
+  if (mode == 0) {
+    cout << "\n\t\t ### Curso ### \n" << "Ciencia da Computacao \n";
+  } else if (mode == 1){
+    cout << "\n\t\t ### DAG Respectiva  ###\n";
     for (i = 0; i < g.digraph.size(); i++){ //Imprime uma caixa com os valores de cada vertice do grafo
-      cout << "==================================================================" << endl;
-      cout << "                                                                 |";
-      cout << "\r| Number: " << g.digraph[i].number << " Name: " << g.digraph[i].name << endl;
-      cout << "                                                                 |";
-      cout << "\r| Credits: " <<  g.digraph[i].credits << " Difficulty: " << g.digraph[i].difficulty << endl;
-      cout << "                                                                 |";
-      cout << "\r| Number of pre requirements: " << g.digraph[i].nofrequirements << " " << g.digraph[i].requirements.size() << endl;
-      cout << "==================================================================" << endl;
+      cout << "==========================================================================================" << endl;
+      cout << "                                                                                         |";
+      cout << "\r| Numero: " << g.digraph[i].number << " Creditos: " <<  g.digraph[i].credits << " Dificuldade: " << g.digraph[i].difficulty << " Name: " << g.digraph[i].name << endl;
+      cout << "                                                                                         |";
+      cout << "\r| Numero de pre requisitos: " << g.digraph[i].nofrequirements << endl;
+      cout << "                                                                                         |";
+      cout << "\r| Numero dos pre requirements: ";
+      for (j = 0; j < g.digraph[i].requirements.size(); j++){
+        cout << " " << g.digraph[i].requirements[j];
+      }
       cout << endl;
+      cout << "==========================================================================================" << endl;
+
     }
   } else {
     cout << "\n\t\t ### Ordenacao Topologica  ###\n Inicio";
@@ -190,7 +196,7 @@ void kahn(graph g){
     }
 
     if (visited != g.digraph.size()) cout << "\n Error!";
-    printg(1, out_g);
+    printg(2, out_g);
 
 }
 
@@ -201,7 +207,8 @@ int main () {
 
   loadfile(g);
   csort(g);
-  //printg(g);
+  printg(0, g);
+  printg(1, g);
   kahn(g);
 
 

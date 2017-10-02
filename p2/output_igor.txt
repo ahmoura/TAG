@@ -2,25 +2,25 @@
 
 
 113034 -> (P = 12 , 113042) -> (P = 12 , 115045) -> (P = 12 , 117536)
-113468 -> / 
+113468 -> /
 
 113450 -> (P = 4 , 117366)
 
 113476 -> (P = 12 , 116319)
-116726 -> / 
+116726 -> /
 
 116351 -> (P = 12 , 116394)
 116319 -> (P = 4 , 117889) -> (P = 4 , 117901) -> (P = 4 , 116343) -> (P = 4 , 116653) -> (P = 4 , 116432) -> (P = 4 , 116416) -> (P = 4 , 117943) -> (P = 4 , 117536)
 
 113042 -> (P = 18 , 113417) -> (P = 18 , 116572)
-113093 -> / 
+113093 -> /
 
 116394 -> (P = 12 , 117935) -> (P = 12 , 116432)
 117889 -> (P = 4 , 117897) -> (P = 4 , 116441)
 
 113107 -> (P = 8 , 116882)
 
-113417 -> / 
+113417 -> /
 
 115045 -> (P = 12 , 116327) -> (P = 12 , 116572) -> (P = 12 , 117943)
 
@@ -28,122 +28,108 @@
 
 117897 -> (P = 4 , 117935)
 116327 -> (P = 4 , 116378)
-117901 -> / 
+117901 -> /
 
 116572 -> (P = 8 , 117927)
 116343 -> (P = 8 , 117951)
 117935 -> (P = 8 , 117960)
 
-116441 -> / 
-116378 -> / 
-116653 -> / 
+116441 -> /
+116378 -> /
+116653 -> /
 116432 -> (P = 12 , 117951)
-117960 -> / 
+117960 -> /
 
 116882 -> (P = 18 , 117951)
 
-116416 -> / 
+116416 -> /
 
-117943 -> / 
+117943 -> /
 
-117536 -> / 
+117536 -> /
 
-117951 -> / 
+117951 -> /
 
-117927 -> / 
+117927 -> /
 
-117919 -> / 
+117919 -> /
 116912 -> (P = 6 , 116921)
 116921 -> (P = 8 , 117919)
-
-
-
-
-===== ORDENACAO TOPOLOGICA =====
-
-
-113034 -> 113468 -> 113450 -> 113476 -> 116726 -> 
-116351 -> 116319 -> 113042 -> 113093 -> 116394 -> 
-117889 -> 113107 -> 113417 -> 115045 -> 117366 -> 
-117897 -> 116327 -> 117901 -> 116572 -> 116343 -> 
-117935 -> 116441 -> 116378 -> 116653 -> 116432 -> 
-117960 -> 116882 -> 116416 -> 117943 -> 117536 -> 
-117951 -> 117927 -> 116912 -> 116921 -> 117919
 
 
 
 ===== DIFICULDADE ASSOCIADA A CADA VERTICE =====
 
 
-113034 Dificuldade associada: 0 
+113034 Dificuldade associada: 0
 
-113468 Dificuldade associada: 0 
+113468 Dificuldade associada: 0
 
-113450 Dificuldade associada: 0 
+113450 Dificuldade associada: 0
 
-113476 Dificuldade associada: 0 
+113476 Dificuldade associada: 0
 
-116726 Dificuldade associada: 0 
+116726 Dificuldade associada: 0
 
-116351 Dificuldade associada: 0 
+116351 Dificuldade associada: 0
 
-116319 Dificuldade associada: 12 
+116319 Dificuldade associada: 12
 
-113042 Dificuldade associada: 12 
+113042 Dificuldade associada: 12
 
-113093 Dificuldade associada: 0 
+113093 Dificuldade associada: 0
 
-116394 Dificuldade associada: 12 
+116394 Dificuldade associada: 12
 
-117889 Dificuldade associada: 16 
+117889 Dificuldade associada: 16
 
-113107 Dificuldade associada: 0 
+113107 Dificuldade associada: 0
 
-113417 Dificuldade associada: 30 
+113417 Dificuldade associada: 30
 
-115045 Dificuldade associada: 12 
+115045 Dificuldade associada: 12
 
-117366 Dificuldade associada: 4 
+117366 Dificuldade associada: 4
 
-117897 Dificuldade associada: 20 
+117897 Dificuldade associada: 20
 
-116327 Dificuldade associada: 24 
+116327 Dificuldade associada: 24
 
-117901 Dificuldade associada: 16 
+117901 Dificuldade associada: 16
 
-116572 Dificuldade associada: 30 
+116572 Dificuldade associada: 30
 
-116343 Dificuldade associada: 16 
+116343 Dificuldade associada: 16
 
-117935 Dificuldade associada: 24 
+117935 Dificuldade associada: 24
 
-116441 Dificuldade associada: 20 
+116441 Dificuldade associada: 20
 
-116378 Dificuldade associada: 28 
+116378 Dificuldade associada: 28
 
-116653 Dificuldade associada: 16 
+116653 Dificuldade associada: 16
 
-116432 Dificuldade associada: 24 
+116432 Dificuldade associada: 24
 
-117960 Dificuldade associada: 32 
+117960 Dificuldade associada: 32
 
-116882 Dificuldade associada: 8 
+116882 Dificuldade associada: 8
 
-116416 Dificuldade associada: 16 
+116416 Dificuldade associada: 16
 
-117943 Dificuldade associada: 24 
+117943 Dificuldade associada: 24
 
-117536 Dificuldade associada: 16 
+117536 Dificuldade associada: 16
 
-117951 Dificuldade associada: 36 
+117951 Dificuldade associada: 36
 
-117927 Dificuldade associada: 38 
+117927 Dificuldade associada: 38
 
-116912 Dificuldade associada: 0 
+116912 Dificuldade associada: 0
 
-116921 Dificuldade associada: 6 
+116921 Dificuldade associada: 6
 
-117919 Dificuldade associada: 14 
+117919 Dificuldade associada: 14
 
 
 
