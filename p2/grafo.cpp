@@ -31,13 +31,13 @@ typedef struct vertex{  // Estrutura de elo
   string name;          // Nome do aluno
   int credits;          // creditos de cada materia
   int difficulty;       // ou weight: peso da materia
+  int nofrequirements;  // numeros de requirements
   vector<int> requirements;     // Lista de arestas conectadas a ele
 } vertex;
 
 typedef struct graph{ // Estrutura de grafo
   vector<vertex> digraph; // Conjunto de elos (digrafo pq tem direcao)
 } graph;
-
 
 int loadfile (graph &g){
 
@@ -88,6 +88,7 @@ int loadfile (graph &g){
       aux.clear(); // Limpa vetor para reaproveitamento
       //------------------------------------PRE REQUISITOS
       i += 1; // Pula o pipe
+	  aux_vertex.nofrequirements = 0;
       while(i < line.size()) { // Le ate o final da linha
         while (line[i] != ' ') { // Le os numeros entre espacos
           aux.push_back(line[i]); // Adiciona ao vetor auxiliar
@@ -96,6 +97,7 @@ int loadfile (graph &g){
         aux_vertex.requirements.push_back(atoi(aux.c_str())); // Joga valor convertido no vetor de arestas
         aux.clear(); // Limpa vetor para reutilizacao
         i++; // Verifica se era espaco ou pipe
+        aux_vertex.nofrequirements++;
       }
 
       g.digraph.push_back(aux_vertex); // Adiciona o vertice auxiliar no vetor do grafo
@@ -120,12 +122,69 @@ int printg (graph g){
     cout << "                                                                 |";
     cout << "\r| Credits: " <<  g.digraph[i].credits << " Difficulty: " << g.digraph[i].difficulty << endl;
     cout << "                                                                 |";
-    cout << "\r| Number of pre requirements: " << g.digraph[i].requirements.size() << endl;
+    cout << "\r| Number of pre requirements: " << g.digraph[i].nofrequirements << " " << g.digraph[i].requirements.size() << endl;
     cout << "==================================================================" << endl;
     cout << endl;
   }
 
   return 0;
+}
+
+void csort(graph &g){
+
+  int i, j, graph_size = g.digraph.size();
+  int bigger;
+  vertex aux;
+
+  for(i = 0;i < graph_size; i++){ //Procura sempre o maior e joga no inicio
+    bigger = i;
+    for (j = i; j < graph_size;j++){
+      if (g.digraph[j].requirements.size() < g.digraph[bigger].requirements.size()) bigger = j;
+    }
+    aux = g.digraph[i];
+    g.digraph[i] = g.digraph[bigger];
+    g.digraph[bigger] = aux;
+  }
+}
+
+void kahn(graph g){
+
+    graph copy_g = g, aux_g, out_g;
+    int i, j, k, out_i, visited = 0;
+    int size_g;
+
+    for (i = 0; i < copy_g.digraph.size(); i++){
+        if (copy_g.digraph[i].nofrequirements == 0){
+            aux_g.digraph.push_back(copy_g.digraph[i]);
+            copy_g.digraph.erase(copy_g.digraph.begin()+i);
+            i--;
+        }
+    }
+    size_g = aux_g.digraph.size();
+    while (size_g != 0){
+        out_g.digraph.push_back(aux_g.digraph[0]);
+        visited++;
+        for(j = 0; j < copy_g.digraph.size(); j++){
+            for (k = 0; k < copy_g.digraph[j].requirements.size(); k++){
+                if (aux_g.digraph[0].number == copy_g.digraph[j].requirements[k]){
+                    copy_g.digraph[j].requirements.erase(copy_g.digraph[j].requirements.begin()+k);
+                    copy_g.digraph[j].nofrequirements--;
+                    if (copy_g.digraph[j].nofrequirements == 0) {
+                            aux_g.digraph.push_back(copy_g.digraph[j]);
+                            size_g++;
+                    }
+                }
+            }
+        }
+        cout << "\n Visited: " << visited;
+        aux_g.digraph.erase(aux_g.digraph.begin());
+        size_g--;
+
+    }
+    cout << endl << "SIZE G: " << size_g;
+    if (visited != g.digraph.size()) cout << "\n Error!";
+
+
 }
 
 int main () {
@@ -134,7 +193,10 @@ int main () {
 
 
   loadfile(g);
-  printg(g);
+  csort(g);
+  //printg(g);
+  kahn(g);
+
 
   return 0;
 }

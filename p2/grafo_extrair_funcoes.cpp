@@ -110,93 +110,6 @@ graph complementv(graph a, graph b){
 
 }
 
-// Funcao para ordernar o grafo em relacao ao vertice de maior grau
-void csort(graph &g){
-
-  int i, j, adj_size = g.adj.size();
-  int bigger;
-  vertex aux;
-
-  for(i = 0;i < adj_size; i++){ //Procura sempre o maior e joga no inicio
-    bigger = i;
-    for (j = i; j < adj_size;j++){
-      if (g.adj[j].edge.size() > g.adj[bigger].edge.size()) bigger = j;
-    }
-    aux = g.adj[i];
-    g.adj[i] = g.adj[bigger];
-    g.adj[bigger] = aux;
-  }
-}
-
-// Funcao para imprimir na tela os vertices
-int printg (graph g){
-
-  unsigned int i;
-
-  for (i = 0; i < g.adj.size(); i++){ //Imprime uma caixa com os valores de cada vertice do grafo
-    cout << "==================================================================" << endl;
-    cout << "                                                                 |";
-    cout << "\r| Nome: " << g.adj[i].name << " Elo: " << g.adj[i].position << endl;
-    cout << "                                                                 |";
-    cout << "\r| Numero de arestas: " <<  g.adj[i].edge.size() <<endl;
-    cout << "==================================================================" << endl;
-    cout << endl;
-  }
-
-  return 0;
-}
-
-// Funcao para copiar os dados do arquivo para o grafo do programa
-int loadfile (graph &g){
-
-  unsigned int i;
-  ifstream myfile("amigos_tag20172.txt"); // nome do arquivo
-  string line; // auxiliador para pegar linhas do arquivo
-  string aux; // auxiliador para converter os valores das linhas do arquivo
-  vertex aux_vertex;
-
-  if(myfile.is_open()){ // Se abrir o arquivo, exercuta
-    while(getline(myfile, line)){ //Enquanto for lido linha faz
-
-      i = 0;
-      while (line[i] != '|') { // Le valores do line ate o pipe
-        aux.push_back(line[i]); // Adiciona no auxiliar para futura conversao
-        i++;
-      }
-
-      aux_vertex.position = atoi(aux.c_str()); // Converte auxiliar para int
-      aux.clear(); // Limpa vetor para reaproveitamento
-
-      i += 1; // Pula o pipe
-      while(line[i] != '|') { // Le ate o proximo pipe
-        while (line[i] != ' ' && line[i] != '|') { // Le os numeros entre espacos
-          aux.push_back(line[i]); // Adiciona ao vetor auxiliar
-          i++;
-        }
-        aux_vertex.edge.push_back(atoi(aux.c_str())); // Joga valor convertido no vetor de arestas
-        aux.clear(); // Limpa vetor para reutilizacao
-        if (line[i] == ' ') i++; // Verifica se era espaco ou pipe
-      }
-
-      i += 1; // Pula o proximo pipe
-      while(i < line.size()) { // Le ate o final da linha
-        aux.push_back(line[i]); // Adiciona no vetor auxiliar
-        i++;
-      }
-      aux_vertex.name = aux; // Nao necessita de conversao, apenas copia para o nome
-      aux.clear(); // Limpa vetor para reutilizacao da proxima linha
-
-      g.adj.push_back(aux_vertex); // Adiciona o vertice auxiliar no vetor do grafo
-      aux_vertex.edge.clear(); // Limpa dados do vetor de arestas do vertice auxiliar
-      cout << endl;
-    }
-    myfile.close(); // Fecha o arquivo apos finalizacao da leitura
-  }
-
-  else cout << "Unable to open file"; // RETURN -1;
-
-  return 0;
-}
 
 // Funcao para achar vizinhaca de um vertice v
 graph neighborhoods (graph g, vertex v) {
@@ -209,42 +122,51 @@ graph neighborhoods (graph g, vertex v) {
   return neighborhoods;
 }
 
-// Funcao para achar os cliques do grafo, segundo algoritimo do slide e da wikipedia
-void bronker(graph g, graph R, graph P, graph X) {
-  unsigned int i;
-  graph aux;
-  graph ordenado;
-  vertex pivo;
-  graph complementar;
+/*
+void kahn(graph g){
 
-  if (P.adj.empty() && X.adj.empty()) {
-    cliques.push_back(R); // Retorna o clique maximal que foi formado em R
-    return;
-  }
+    graph aux_g = g, out_g;
+    int size_g = g.digraph.size();
+    int i, j, k, visited = 0;
 
-  ordenado = unionv(P, X);
-  csort(ordenado);
-  pivo = ordenado.adj[0];
+    while (aux_g.digraph.size() != 0){ //Usando aux_g de fila
+                        cout << "TESTE 1";
+        for (i = 0; i < aux_g.digraph.size(); i++){ // Procurando vertices com 0 chegadas
+             cout << "TESTE 2";
+            if (aux_g.digraph[i].nofrequirements == 0){ // Se tiver achado um vertice sem pre requisitos
+            cout << "TESTE 3";
+                out_g.digraph.push_back(aux_g.digraph[i]); // Copia para o grafo de saida
+                k = 0;
+                for(j = 0; j < aux_g.digraph.size(); j++){ // Vai procurar em todos os outros vertices se esse tem essa materia como requisito
+            cout << "TESTE 4";
+                    while (k <= aux_g.digraph[j].requirements.size()){ // Verifica a quantidade de pre requisitos que cada materia tem
+            cout << "TESTE 5";
+                       if (aux_g.digraph[j].requirements.size() != 0)
+                       if (aux_g.digraph[i].number == aux_g.digraph[j].requirements[k]){ // Caso ache materia que tem ela de pre requisito
+                            cout << "TESTE 6";
+                            aux_g.digraph[j].requirements.erase(aux_g.digraph[j].requirements.begin()+ k); // Apaga o pre requisito
+                            aux_g.digraph[j].nofrequirements--; // Tira um pre requisito da lista
+                            k == aux_g.digraph[j].requirements.size(); // Ignora os proximos requisitos
+                        }
+                        k++;
+                    }
+                }
+                aux_g.digraph.erase(aux_g.digraph.begin()+i);
+            }
+        }
+    }
 
-  complementar = complementv(P, neighborhoods(g, pivo));
-  for (i = 0; i < complementar.adj.size(); i++) { // Recursividade da funcao (Seguindo slide)
-    aux.adj.push_back(complementar.adj[i]);
+    printg(out_g);
 
-    bronker(g, unionv(R, aux), intersectv(P, neighborhoods(g, complementar.adj[i])), intersectv(X, neighborhoods(g, complementar.adj[i])));
-    P = complementv(P, aux);
-    X = unionv(X, aux);
-
-    aux.adj.clear();
-  }
 }
-
+*/
 
 int main () {
 
   // Grafos da funcao bronker (Bron-Kerbosch)
   graph g;
   graph R;
-  
+
   graph X;
   unsigned int i;
 
