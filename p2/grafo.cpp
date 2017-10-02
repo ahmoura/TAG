@@ -134,12 +134,20 @@ int printg (int mode, graph g){
       cout << "==========================================================================================" << endl;
 
     }
-  } else {
+  } else if (mode == 2){
     cout << "\n\t\t ### Ordenacao Topologica  ###\n Inicio";
     for (i = 0; i < g.digraph.size(); i++){ //Imprime uma caixa com os valores de cada vertice do grafo
        cout << " -> " << g.digraph[i].number;
     }
     cout << " -> Fim \n\n\n";
+  } else {
+    // CAMINHO CRITICO AQUI
+    cout << "\n\t\t ### Caminho Critico ###\n Inicio";
+    for (i = 0; i < g.digraph.size(); i++){ //Imprime uma caixa com os valores de cada vertice do grafo
+       cout << " -> " << g.digraph[i].number;
+    }
+    cout << " -> Fim \n\n\n";
+    }
   }
   return 0;
 }
