@@ -111,22 +111,30 @@ int loadfile (graph &g){
   return 0;
 }
 
-int printg (graph g){
+int printg (int mode, graph g){
 
   unsigned int i;
 
-  for (i = 0; i < g.digraph.size(); i++){ //Imprime uma caixa com os valores de cada vertice do grafo
-    cout << "==================================================================" << endl;
-    cout << "                                                                 |";
-    cout << "\r| Number: " << g.digraph[i].number << " Name: " << g.digraph[i].name << endl;
-    cout << "                                                                 |";
-    cout << "\r| Credits: " <<  g.digraph[i].credits << " Difficulty: " << g.digraph[i].difficulty << endl;
-    cout << "                                                                 |";
-    cout << "\r| Number of pre requirements: " << g.digraph[i].nofrequirements << " " << g.digraph[i].requirements.size() << endl;
-    cout << "==================================================================" << endl;
-    cout << endl;
-  }
 
+  if (mode == 0){
+    for (i = 0; i < g.digraph.size(); i++){ //Imprime uma caixa com os valores de cada vertice do grafo
+      cout << "==================================================================" << endl;
+      cout << "                                                                 |";
+      cout << "\r| Number: " << g.digraph[i].number << " Name: " << g.digraph[i].name << endl;
+      cout << "                                                                 |";
+      cout << "\r| Credits: " <<  g.digraph[i].credits << " Difficulty: " << g.digraph[i].difficulty << endl;
+      cout << "                                                                 |";
+      cout << "\r| Number of pre requirements: " << g.digraph[i].nofrequirements << " " << g.digraph[i].requirements.size() << endl;
+      cout << "==================================================================" << endl;
+      cout << endl;
+    }
+  } else {
+    cout << "\n\t\t ### Ordenacao Topologica  ###\n Inicio";
+    for (i = 0; i < g.digraph.size(); i++){ //Imprime uma caixa com os valores de cada vertice do grafo
+       cout << " -> " << g.digraph[i].number;
+    }
+    cout << " -> Fim \n\n\n";
+  }
   return 0;
 }
 
@@ -150,8 +158,8 @@ void csort(graph &g){
 void kahn(graph g){
 
     graph copy_g = g, aux_g, out_g;
-    int i, j, k, out_i, visited = 0;
     int size_g;
+    unsigned i, j, k, visited = 0;
 
     for (i = 0; i < copy_g.digraph.size(); i++){
         if (copy_g.digraph[i].nofrequirements == 0){
@@ -176,14 +184,13 @@ void kahn(graph g){
                 }
             }
         }
-        cout << "\n Visited: " << visited;
         aux_g.digraph.erase(aux_g.digraph.begin());
         size_g--;
 
     }
-    cout << endl << "SIZE G: " << size_g;
-    if (visited != g.digraph.size()) cout << "\n Error!";
 
+    if (visited != g.digraph.size()) cout << "\n Error!";
+    printg(1, out_g);
 
 }
 
