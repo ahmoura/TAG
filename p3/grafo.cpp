@@ -44,7 +44,7 @@ typedef struct graph{
 
 int loadfile (graph &g){
 
-  unsigned int i, j, k;
+  unsigned int i, j;
   ifstream myfile("entradaProj3TAG.txt");
   string line;
   string aux;
@@ -55,7 +55,7 @@ int loadfile (graph &g){
   if(myfile.is_open()){ // Se abrir o arquivo, exercuta
 
 		//------------------------- LEITURA DOS PROFESSORES
-		for (j = 0; j < 100; j++){
+	for (j = 0; j < 100; j++){
 
 		getline(myfile, line);
 		i = 0;
@@ -67,6 +67,7 @@ int loadfile (graph &g){
 		}
 		aux_tvertex.code = aux;
 		aux.clear();
+		
 		//------------------------- LEITURA DA LICENCA
 		i += 1; // Pula o pipe
 		while (line[i] != '|') { // Le valores do line ate o pipe
@@ -74,11 +75,12 @@ int loadfile (graph &g){
 			i++;
 		}
 		aux_tvertex.license = atoi(aux.c_str()); // Joga dentro da struct o valor convertido
+		aux.clear();
 
 		//------------------------- LEITURA DAS PREFERENCIAS
 		i += 1;
 		while(i < line.size()) { // Le ate o final da linha
-			while (line[i] != ' ') { // Le os numeros entre espacos
+			while (line[i] != ' ' && i != line.size()) { // Le os numeros entre espacos
 				aux.push_back(line[i]); // Adiciona ao vetor auxiliar
 				i++;
 			}
@@ -111,7 +113,8 @@ int loadfile (graph &g){
 			i++;
 		}
 		aux_svertex.preferences = atoi(aux.c_str());
-		g.school.push_back(aux_svertex); // Adiciona o vertice auxiliar no vetor do grafo
+		aux.clear();
+		g.school.push_back(aux_svertex);
 
 	}
     myfile.close(); // Fecha o arquivo apos finalizacao da leitura
@@ -121,7 +124,7 @@ int loadfile (graph &g){
   return 0;
 }
 
-int printg (graph g){
+void printg (graph g){
 
   unsigned int i, j;
 
@@ -131,7 +134,7 @@ int printg (graph g){
       cout << "                                                                                         |";
       cout << "\r| Code: " << g.teacher[i].code << " License: " <<  g.teacher[i].license << endl;
       cout << "                                                                                         |";
-      cout << "\r| Preferences: ";
+      cout << "\r| Preferences:";
       for (j = 0; j < g.teacher[i].preferences.size(); j++){
         cout << " " << g.teacher[i].preferences[j];
       }
@@ -139,7 +142,8 @@ int printg (graph g){
       cout << "==========================================================================================" << endl;
 
     }
-/*    cout << "\n\t\t ### ESCOLAS  ###\n";
+
+    cout << "\n\t\t ### ESCOLAS  ###\n";
     for (i = 0; i < g.school.size(); i++){ //Imprime uma caixa com os valores de cada vertice do grafo
       cout << "==========================================================================================" << endl;
       cout << "                                                                                         |";
@@ -147,8 +151,7 @@ int printg (graph g){
       cout << endl;
       cout << "==========================================================================================" << endl;
 
-    } */
-  return 0;
+    }
 }
 
 
