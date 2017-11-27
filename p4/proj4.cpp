@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <bits/stdc++.h>
 #include <string.h>
+#include <sstream>
 
 using namespace std;
 
@@ -24,7 +25,7 @@ typedef struct Deputado{
 vector<Deputado> loadFile(){
 	int i, j = 0;
 	string delimiter = ",";
-	ifstream myfile("dirty_deputies_simple.csv");
+	ifstream myfile("dirty_deputies_v2.csv");
   	string line;
   	vector<string> campos;
   	string token;
@@ -34,7 +35,6 @@ vector<Deputado> loadFile(){
 
   	if(myfile.is_open()){
   		getline(myfile,line);
-  		cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
 
   		while(myfile.eof() == false){
   			getline(myfile,line);
@@ -89,11 +89,49 @@ vector<Deputado> loadFile(){
   	return deputados;
 }
 
+void itree(vector<Deputado> deputados){
+	
+	unsigned int i, j;
+	struct media_refund {string refund; float value; int total;} mr[100];
+	unsigned int mrcount = 0, flag = 0;
+	
+	for (i = 0; i < 100; i++){
+		mr[i].refund = "NONE";
+		mr[i].value = 0;
+		mr[i].total = 0;
+	}
+
+	for(i = 0; i < deputados.size(); i ++){
+		for (j = 0; j < mrcount; j++){
+			if (deputados[i].refund_description == mr[j].refund){
+			flag = j;
+			}
+		}
+		if (flag != 0){
+			mr[flag].value = mr[flag].value + stod(deputados[i].refund_value, NULL);
+			mr[flag].total = mr[flag].total + 1;
+			flag = 0;
+		}
+		else{
+			mrcount++;
+			mr[mrcount].refund = deputados[i].refund_description;
+			mr[mrcount].value = stod(deputados[i].refund_value, NULL);
+			mr[mrcount].total = mr[j].total + 1;
+		}
+	}	
+	for (j = 0; j < mrcount; j++){
+		cout << "REFUND: " << mr[j].refund << "   ";
+		cout << "VALUE: " << mr[j].value << "   ";
+		cout << "TOTAL: " << mr[j].total << endl;
+	}
+}
+
 void printFile(vector<Deputado> deputados){
 	unsigned int i;
 
 	cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
 	for(i = 0; i < deputados.size(); i ++){
+		cout << "ID: "               << i              << endl;
 		cout << "Name: "               << deputados[i].name               << endl;
 		cout << "State: "              << deputados[i].state              << endl;
 		cout << "Party: "              << deputados[i].party              << endl;
@@ -109,6 +147,7 @@ void printFile(vector<Deputado> deputados){
 int main (){
 	vector<Deputado> all_deputados;
 	all_deputados = loadFile();
-	printFile(all_deputados);
+	itree(all_deputados);
+	//printFile(all_deputados);
 	return 0;
 }
