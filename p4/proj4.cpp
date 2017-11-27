@@ -92,7 +92,7 @@ vector<Deputado> loadFile(){
 void itree(vector<Deputado> deputados){
 	
 	unsigned int i, j;
-	struct media_refund {string refund; float value; int total;} mr[100];
+	struct media_refund {string refund; double value; int total;} mr[100];
 	unsigned int mrcount = 0, flag = 0;
 	
 	for (i = 0; i < 100; i++){
